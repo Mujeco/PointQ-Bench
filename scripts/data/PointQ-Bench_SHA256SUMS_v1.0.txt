@@ -1,0 +1,2 @@
+da2e1f58902811be130959bb3f3f43ae44c00a788558af7493eb5c06a969985b  PointQ-Bench_pointclouds_v1.0.zip
+bfbc4c77af6dd0ed4a3d817813e94310f6600a9e341460f6a27644798533200f  PointQ-Bench_screenshots_mv6_v1.0.zip

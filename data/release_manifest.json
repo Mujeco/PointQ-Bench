@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "release_version": "1.0",
+  "audit_date": "2026-10-08",
+  "cloud_manifest": "manifest.csv",
+  "cloud_count": 3083,
+  "cloud_uncompressed_bytes": 22957849147,
+  "dataset_counts": {
+    "LiDARNet": 369,
+    "T23D-CompBench_ply": 600,
+    "co3d": 499,
+    "modelnet40c_processed": 710,
+    "scanobjectnn": 300,
+    "sjtu_processed": 344,
+    "wpc_processed": 261
+  },
+  "archives": {
+    "clouds": {
+      "name": "PointQ-Bench_pointclouds_v1.0.zip",
+      "bytes": 9959561286,
+      "sha256": "da2e1f58902811be130959bb3f3f43ae44c00a788558af7493eb5c06a969985b",
+      "members": 3083,
+      "parts": [
+        {
+          "name": "PointQ-Bench_pointclouds_v1.0.zip.001",
+          "bytes": 3221225472,
+          "sha256": "7dfe24e71fbfdfbeca01a56cf240ba06fee981cba9a2e232d4391ba6233ae9df"
+        },
+        {
+          "name": "PointQ-Bench_pointclouds_v1.0.zip.002",
+          "bytes": 3221225472,
+          "sha256": "2a0cb98c5d077ef39cadd754598e3c0c379257affcbf8a5aec00fd70eff42c63"
+        },
+        {
+          "name": "PointQ-Bench_pointclouds_v1.0.zip.003",
+          "bytes": 3221225472,
+          "sha256": "c221da4e2d0b8d354bbc7d3a0657968a9f8cae46003e12fb109aba886a3d4d45"
+        },
+        {
+          "name": "PointQ-Bench_pointclouds_v1.0.zip.004",
+          "bytes": 295884870,
+          "sha256": "be26d96635dde38be152a1f23eab015a83166fa101d1104e59a520b19a5a5c1a"
+        }
+      ],
+      "assembly": "Concatenate .001, .002, .003, .004 in byte order, then unzip the merged ZIP."
+    },
+    "images": {
+      "name": "PointQ-Bench_screenshots_mv6_v1.0.zip",
+      "bytes": 1667244954,
+      "sha256": "bfbc4c77af6dd0ed4a3d817813e94310f6600a9e341460f6a27644798533200f",
+      "members": 18498,
+      "views_per_cloud": 6
+    }
+  },
+  "public_download": {
+    "provider": "Baidu Netdisk",
+    "url": "https://pan.baidu.com/s/1oHoVxMzDVNkyiV40wphWzw?pwd=4vi1",
+    "extraction_code": "4vi1",
+    "folder": "PointQ-Bench-v1.0",
+    "expected_file_count": 9,
+    "expiry": "permanent",
+    "share_page_expiry_verified": true,
+    "status": "Public share supplied by release owner; permanent expiry and nine-file listing verified on share page. Full remote redownload not tested."
+  },
+  "verification": {
+    "local_cloud_sha256_matched": 3083,
+    "local_clean_cloud_zip_crc_sha256_matched": 3083,
+    "local_clean_image_zip_crc_sha256_matched": 18498,
+    "remote_redownload_tested": false
+  },
+  "separate_assets": {
+    "expert_annotations": "pending_formal_freeze",
+    "question_tables": "pending_formal_freeze",
+    "model_outputs": "pending_formal_freeze"
+  },
+  "rights": {
+    "data": "Source-dependent terms; authors explicitly approved redistribution of all 3083 clouds and 18498 images and public Baidu sharing. No blanket data license is asserted.",
+    "code_license": "MIT for self-owned code and site; not a blanket data license"
+  }
+}

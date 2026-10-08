@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use PointQ-Bench, please cite our paper."
+type: software
+title: "PointQ-Bench: Benchmarking Diagnostic and Interpretable Point Cloud Quality Assessment"
+authors:
+  - family-names: Wang
+    given-names: Duanchu
+  - family-names: Li
+    given-names: Cheng
+  - family-names: Yang
+    given-names: Junjie
+  - family-names: Huang
+    given-names: Jing
+  - family-names: Cheng
+    given-names: Zihang
+  - family-names: Gao
+    given-names: Zhi
+  - family-names: Zhu
+    given-names: Bohong
+  - family-names: Wang
+    given-names: Di
+repository-code: "https://github.com/Mujeco/PointQ-Bench"
+url: "https://github.com/Mujeco/PointQ-Bench"
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "PointQ-Bench: Benchmarking Diagnostic and Interpretable Point Cloud Quality Assessment"
+  authors:
+    - family-names: Wang
+      given-names: Duanchu
+    - family-names: Li
+      given-names: Cheng
+    - family-names: Yang
+      given-names: Junjie
+    - family-names: Huang
+      given-names: Jing
+    - family-names: Cheng
+      given-names: Zihang
+    - family-names: Gao
+      given-names: Zhi
+    - family-names: Zhu
+      given-names: Bohong
+    - family-names: Wang
+      given-names: Di
+  year: 2026
+  collection-title: "Proceedings of the 34th ACM International Conference on Multimedia"
+  doi: "10.1145/3767308.3836267"
+  url: "https://doi.org/10.1145/3767308.3836267"

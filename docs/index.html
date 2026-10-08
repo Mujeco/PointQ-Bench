@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="PointQ-Bench, ACM Multimedia 2026. A diagnostic benchmark for point cloud quality understanding: 3,083 point clouds, 8 expert raters, 4 tasks, and SSFRQ-5D."
+    />
+    <meta name="theme-color" content="#f5f0e6" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; font-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
+    <meta
+      property="og:title"
+      content="PointQ-Bench | Beyond a score. Toward a diagnosis."
+    />
+    <meta
+      property="og:description"
+      content="Benchmarking diagnostic and interpretable point cloud quality assessment. ACM Multimedia 2026."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mujeco.github.io/PointQ-Bench/" />
+    <meta
+      property="og:image"
+      content="https://mujeco.github.io/PointQ-Bench/assets/benchmark-overview.png"
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>PointQ-Bench | The Point Cloud Clinic</title>
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#" aria-label="PointQ-Bench home"
+          ><img src="assets/favicon.svg" width="34" height="34" alt="" /><span
+            >PointQ<span class="brand-dash">-</span>Bench</span
+          ></a
+        >
+        <nav aria-label="Main navigation">
+          <a href="#benchmark">The benchmark</a>
+          <a href="#protocol">Evaluation</a>
+          <a href="#download">Get the data</a>
+        </nav>
+        <a class="header-github" href="https://github.com/Mujeco/PointQ-Bench"
+          >GitHub <span aria-hidden="true">&#8599;</span></a
+        >
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero container">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">
+            <span class="status-dot"></span> ACM MULTIMEDIA 2026
+            <span class="eyebrow-divider">/</span> OPEN RESEARCH
+          </p>
+          <h1>Beyond a score.<br />Toward a <em>diagnosis.</em></h1>
+          <p class="hero-title">
+            PointQ-Bench: Benchmarking Diagnostic and<br class="desktop-br" />
+            Interpretable Point Cloud Quality Assessment
+          </p>
+          <p class="hero-description">
+            A pretty point cloud can hide an ugly problem. We ask models to spot
+            it, name it, judge its usability, and explain their evidence.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#download"
+              >Explore the data <span aria-hidden="true">&#8599;</span></a
+            >
+            <a
+              class="button button-outline"
+              href="assets/pointq-bench-paper.pdf"
+              >Read the paper <span aria-hidden="true">&#8599;</span></a
+            >
+          </div>
+          <p class="hero-note">
+            <span class="tiny-cross" aria-hidden="true">+</span> Four tasks.
+            Eight experts. One very honest check-up.
+          </p>
+        </div>
+        <div class="clinic-window reveal">
+          <div class="window-top">
+            <span class="window-dots" aria-hidden="true"
+              ><i></i><i></i><i></i></span
+            ><span>THE POINT CLOUD CLINIC</span
+            ><span class="window-number">PAPER CASE</span>
+          </div>
+          <div class="mascot-stage">
+            <span class="stage-label">MEET JI-GE</span>
+            <img
+              class="paper-case-image"
+              data-case-image="pointcloud"
+              src="assets/ji-ge-pointcloud.jpg"
+              width="529"
+              height="685"
+              alt="Paper illustration: the Ji-ge cartoon character with silver center-parted hair, black overalls and a basketball, rendered as a point cloud."
+            />
+            <img
+              class="paper-case-image"
+              data-case-image="reference"
+              src="assets/ji-ge-reference.jpg"
+              width="529"
+              height="685"
+              alt="The same Ji-ge cartoon character as a reference mesh; not an evaluation input."
+              hidden
+            />
+            <span class="stage-axis" aria-hidden="true"
+              >+Y<br /><span>+X &nbsp; +Z</span></span
+            >
+            <div class="clinic-stamp" aria-hidden="true">
+              <span>QUALITY</span><strong>CHECK</strong
+              ><span>NOT JUST LOOKS</span>
+            </div>
+          </div>
+          <div class="condition-panel">
+            <span class="mono-label"
+              >SAME CHARACTER. DIFFERENT REPRESENTATIONS.</span
+            >
+            <div
+              class="condition-buttons"
+              role="group"
+              aria-label="Paper example view"
+            >
+              <button data-case-view="pointcloud" aria-pressed="true">
+                Point cloud
+              </button>
+              <button data-case-view="reference" aria-pressed="false">
+                Reference mesh
+              </button>
+            </div>
+            <div class="mascot-diagnosis">
+              <span class="diagnosis-dot"></span>
+              <p id="case-description" aria-live="polite">
+                Rendered point cloud shown in the paper's quality-assessment
+                example.
+              </p>
+            </div>
+          </div>
+          <p class="demo-disclaimer">
+            Images extracted from the paper illustration. Reference mesh is not
+            an evaluation input; this is not a live model prediction.
+            <a href="assets/pointq-bench-paper.pdf">See the paper.</a>
+          </p>
+        </div>
+      </section>
+      <div
+        class="stat-strip container reveal"
+        aria-label="Benchmark at a glance"
+      >
+        <div>
+          <strong>3,083<span>+</span></strong
+          ><span>POINT CLOUDS</span
+          ><small>Authentic, simulated &amp; AI-generated</small>
+        </div>
+        <div>
+          <strong>8</strong><span>EXPERT RATERS</span
+          ><small>Independent judgments per sample</small>
+        </div>
+        <div>
+          <strong>12,332</strong><span>QUESTION-ANSWER PAIRS</span
+          ><small>Four tasks for every point cloud</small>
+        </div>
+        <div>
+          <strong>14</strong><span>MODELS EVALUATED</span
+          ><small>2D MLLMs &amp; native 3D VLMs</small>
+        </div>
+      </div>
+      <section class="section container" id="benchmark">
+        <div class="section-heading reveal">
+          <p class="eyebrow">01 / THE BENCHMARK</p>
+          <h2>Different origins.<br /><em>Shared questions.</em></h2>
+          <p>
+            From real-world scans to generated shapes, quality is more than how
+            many points you have.
+          </p>
+        </div>
+        <div class="source-layout reveal">
+          <div class="source-summary">
+            <span class="mono-label">3 SOURCE FAMILIES / 7 DATASETS</span>
+            <div
+              class="composition-bar"
+              aria-label="1168 authentic,1315 simulated,600 AI-generated"
+            >
+              <span class="authentic-segment"></span
+              ><span class="simulated-segment"></span
+              ><span class="generated-segment"></span>
+            </div>
+            <div class="source-families">
+              <div>
+                <span class="family-dot authentic"></span><strong>1,168</strong
+                ><span>Authentic</span
+                ><small>Scans &amp; reconstructions</small>
+              </div>
+              <div>
+                <span class="family-dot simulated"></span><strong>1,315</strong
+                ><span>Simulated</span><small>Controlled distortions</small>
+              </div>
+              <div>
+                <span class="family-dot generated"></span><strong>600</strong
+                ><span>AI-generated</span><small>Text-to-3D content</small>
+              </div>
+            </div>
+            <p class="source-footnote">
+              Each selected sample receives MOS, a usability label, defect tags,
+              and expert-grounded comments. AI-summarized reference text is
+              documented separately from human annotations.
+            </p>
+          </div>
+          <div class="source-list">
+            <div><span>LiDAR-Net</span><strong>369</strong></div>
+            <div><span>CO3D</span><strong>499</strong></div>
+            <div><span>ScanObjectNN</span><strong>300</strong></div>
+            <div><span>ModelNet40-C</span><strong>710</strong></div>
+            <div><span>SJTU-PCQA</span><strong>344</strong></div>
+            <div><span>WPC</span><strong>261</strong></div>
+            <div><span>T23D-CompBench</span><strong>600</strong></div>
+          </div>
+        </div>
+        <details class="paper-figure reveal">
+          <summary>
+            See the benchmark overview from the paper
+            <span aria-hidden="true">+</span>
+          </summary>
+          <figure>
+            <img
+              src="assets/benchmark-overview.png"
+              width="2208"
+              height="1242"
+              loading="lazy"
+              alt="PointQ-Bench overview: seven datasets grouped into authentic, simulated, and AI-generated families; eight expert annotators; quality scores, levels, defect tags, and comments; official-clean and boundary-valid evaluation splits; eight issue types."
+            />
+            <figcaption>
+              Overview reproduced from the authors' camera-ready source.
+              <a href="assets/pointq-bench-paper.pdf"
+                >Wang et al., PointQ-Bench, ACM MM 2026</a
+              >. Paper license: CC BY 4.0; source data rights remain separate.
+            </figcaption>
+          </figure>
+        </details>
+      </section>
+      <section class="task-section" id="tasks">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">02 / THE CHECK-UP</p>
+            <h2>Can it see the problem?<br /><em>Can it tell you why?</em></h2>
+            <p>
+              Three perception tasks, followed by one evidence-grounded quality
+              report. No hiding behind a single number.
+            </p>
+          </div>
+          <div class="task-grid">
+            <article class="task-card reveal">
+              <span class="task-number">01</span>
+              <div class="task-glyph" aria-hidden="true">?</div>
+              <p class="mono-label">YES / NO</p>
+              <h3>Spot the anomaly.</h3>
+              <p>Is there a noticeable quality degradation?</p>
+              <div class="task-bottom">
+                Anomaly sensing <span>Accuracy</span>
+              </div>
+            </article>
+            <article class="task-card reveal">
+              <span class="task-number">02</span>
+              <div class="task-glyph" aria-hidden="true">&#8853;</div>
+              <p class="mono-label">WHAT</p>
+              <h3>Name the defect.</h3>
+              <p>Which issue types are present in the point cloud?</p>
+              <div class="task-bottom">
+                Defect diagnosis <span>Sample-level F1</span>
+              </div>
+            </article>
+            <article class="task-card reveal">
+              <span class="task-number">03</span>
+              <div class="task-glyph bars" aria-hidden="true">
+                <i></i><i></i><i></i>
+              </div>
+              <p class="mono-label">HOW</p>
+              <h3>Judge usability.</h3>
+              <p>Is the point cloud good, usable, or bad?</p>
+              <div class="task-bottom">
+                Usability grading <span>Macro-F1</span>
+              </div>
+            </article>
+            <article class="task-card task-reasoning reveal">
+              <span class="task-number">04</span>
+              <div class="task-glyph" aria-hidden="true">&#8220;</div>
+              <p class="mono-label">WHY / QUALITY REPORT</p>
+              <h3>Show the evidence.</h3>
+              <p>Explain the visible defects and support a final judgment.</p>
+              <div class="task-bottom">
+                Quality reasoning <span>SSFRQ-5D</span>
+              </div>
+            </article>
+          </div>
+          <div class="defect-row reveal">
+            <span class="mono-label">EIGHT ISSUE TYPES</span
+            ><span>Missing parts</span><span>Density abnormalities</span
+            ><span>Surface noise</span><span>Clutter / outliers</span
+            ><span>Geometry distortion</span><span>Compression artifacts</span
+            ><span>Pose / coordinate distortion</span
+            ><span>Attribute misalignment</span>
+          </div>
+        </div>
+      </section>
+      <section class="section container" id="protocol">
+        <div class="protocol-layout">
+          <div class="protocol-intro reveal">
+            <p class="eyebrow">03 / THE DIAGNOSTIC STANDARD</p>
+            <h2>Fluent is not<br /><em>faithful.</em></h2>
+            <p>
+              A convincing report is not necessarily a correct one. SSFRQ-5D
+              separates coverage, specificity, grounding, reasoning, and the
+              final quality decision.
+            </p>
+            <div class="scale-note">
+              <span class="scale-num">0</span><span class="scale-num">1</span
+              ><span class="scale-num">2</span>
+              <p>
+                Five dimensions. Three ordinal scores.<br />Sum reported out of
+                10.
+              </p>
+            </div>
+            <a class="text-link" href="assets/pointq-bench-paper.pdf"
+              >Read the evaluation protocol
+              <span aria-hidden="true">&#8599;</span></a
+            >
+          </div>
+          <div class="protocol-dimensions reveal">
+            <div>
+              <span>S1</span>
+              <section>
+                <h3>Structural Sufficiency</h3>
+                <p>
+                  Does the report include an overview, defects, and a final
+                  judgment?
+                </p>
+              </section>
+            </div>
+            <div>
+              <span>S2</span>
+              <section>
+                <h3>Specificity</h3>
+                <p>
+                  Does it describe concrete geometric or attribute evidence,
+                  rather than generic claims?
+                </p>
+              </section>
+            </div>
+            <div>
+              <span>F</span>
+              <section>
+                <h3>Faithfulness</h3>
+                <p>
+                  Does it agree with the reference evidence without inventing
+                  defects?
+                </p>
+              </section>
+            </div>
+            <div>
+              <span>R</span>
+              <section>
+                <h3>Reasoning Coherence</h3>
+                <p>
+                  Do the cited defects logically support the usability
+                  conclusion?
+                </p>
+              </section>
+            </div>
+            <div>
+              <span>Q</span>
+              <section>
+                <h3>Quality Accuracy</h3>
+                <p>
+                  How close is the final decision to the reference usability
+                  level?
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+        <aside class="boundary-note reveal">
+          <span class="boundary-mark" aria-hidden="true">&#8776;</span>
+          <div>
+            <h3>Ambiguity is part of the benchmark.</h3>
+            <p>
+              High-consensus samples form <strong>Official-Clean</strong>. Valid
+              but ambiguous samples remain in <strong>Boundary-Valid</strong>,
+              so disagreement is studied rather than silently removed.
+            </p>
+          </div>
+          <a href="assets/pointq-bench-paper.pdf"
+            >See the paper <span aria-hidden="true">&#8599;</span></a
+          >
+        </aside>
+      </section>
+      <section class="download-section" id="download">
+        <div class="container">
+          <div class="download-heading reveal">
+            <div>
+              <p class="eyebrow">04 / TAKE THE BENCHMARK HOME</p>
+              <h2>Ready for<br /><em>a closer look?</em></h2>
+            </div>
+            <p>
+              The point clouds and frozen six-view projections are available
+              now. Checksums and a sample manifest keep your local copy
+              accountable.
+            </p>
+          </div>
+          <div class="download-grid reveal">
+            <article class="download-card">
+              <div class="download-card-heading">
+                <span class="package-number">A</span
+                ><span class="availability">AVAILABLE</span>
+              </div>
+              <h3>Point clouds</h3>
+              <p>3,083 original benchmark inputs across seven sources.</p>
+              <div class="package-size">9.96 <span>GB compressed</span></div>
+              <p class="package-detail">
+                4 byte parts: 3 GiB + 3 GiB + 3 GiB + 282 MiB.<br />Merge first,
+                then unzip. This is not a four-dataset split.
+              </p>
+              <a
+                class="button button-light"
+                href="https://pan.baidu.com/s/1oHoVxMzDVNkyiV40wphWzw?pwd=4vi1"
+                >Download from Baidu <span aria-hidden="true">&#8599;</span></a
+              >
+            </article>
+            <article class="download-card">
+              <div class="download-card-heading">
+                <span class="package-number">B</span
+                ><span class="availability">AVAILABLE</span>
+              </div>
+              <h3>Six-view images</h3>
+              <p>18,498 frozen PNG projections. Six views per point cloud.</p>
+              <div class="package-size">1.67 <span>GB compressed</span></div>
+              <p class="package-detail">
+                One ZIP with dataset-relative image folders.<br />Use the frozen
+                inputs to match the evaluated view setting.
+              </p>
+              <a
+                class="button button-light"
+                href="https://pan.baidu.com/s/1oHoVxMzDVNkyiV40wphWzw?pwd=4vi1"
+                >Download from Baidu <span aria-hidden="true">&#8599;</span></a
+              >
+            </article>
+          </div>
+          <div class="download-tools reveal">
+            <div>
+              <span class="mono-label">BAIDU EXTRACTION CODE / 提取码</span
+              ><button
+                class="copy-code"
+                data-copy="4vi1"
+                aria-label="Copy Baidu extraction code 4vi1"
+              >
+                <strong>4vi1</strong><span>Copy</span></button
+              ><span class="permanent-note">Permanent link</span>
+            </div>
+            <a href="https://github.com/Mujeco/PointQ-Bench/tree/main/data"
+              >Manifest &amp; SHA-256 <span aria-hidden="true">&#8599;</span></a
+            ><a href="https://github.com/Mujeco/PointQ-Bench/tree/main/scripts"
+              >Merge &amp; verification tools
+              <span aria-hidden="true">&#8599;</span></a
+            >
+          </div>
+          <details class="merge-instructions reveal">
+            <summary>
+              How to merge the point cloud parts
+              <span aria-hidden="true">+</span>
+            </summary>
+            <div>
+              <p>
+                Download all four <code>.zip.001</code> to
+                <code>.zip.004</code> parts, the parts checksum file, and
+                <code>merge_pointcloud_parts.py</code> into the same directory.
+                Run:
+              </p>
+              <pre><code>python merge_pointcloud_parts.py</code></pre>
+              <p>
+                The script verifies each part and the reconstructed archive
+                before completing. Unzip
+                <code>PointQ-Bench_pointclouds_v1.0.zip</code> afterwards. The
+                files in the share include full instructions and both checksum
+                lists.
+              </p>
+              <p>
+                本次点云包需要先合并四个分卷，再解压；图片包可直接解压。原始点云文件内容未改动。
+              </p>
+            </div>
+          </details>
+          <aside class="release-note reveal">
+            <span class="note-plus" aria-hidden="true">+</span>
+            <div>
+              <strong>A staged, transparent release.</strong>
+              <p>
+                Data packages contain point clouds and images only. Expert
+                annotations, model QA, judge scores, SSFRQ scores, and full
+                paper-table reproduction are released separately after final
+                version pairing. No provisional model leaderboard is presented
+                here.
+              </p>
+              <small
+                >Source-dataset rights remain separate from the MIT code
+                license. Local packages passed full CRC and SHA-256 checks;
+                remote re-download verification is not yet complete.</small
+              >
+            </div>
+          </aside>
+        </div>
+      </section>
+      <section class="section container citation-section" id="paper">
+        <div class="paper-meta reveal">
+          <p class="eyebrow">05 / THE PEOPLE &amp; THE PAPER</p>
+          <h2>Point clouds.<br /><em>Human judgment.</em></h2>
+          <p class="authors">
+            Duanchu Wang<sup>*</sup>, Cheng Li<sup>*</sup>, Junjie Yang,<br />Jing
+            Huang, Zihang Cheng, Zhi Gao, Bohong Zhu,<br />Di Wang<sup
+              >&dagger;</sup
+            >
+          </p>
+          <p class="author-notes">
+            * Equal contribution. &dagger; Corresponding author.
+          </p>
+          <p class="affiliations">
+            Xi'an Jiaotong University<br />University of Chinese Academy of
+            Sciences
+          </p>
+          <a class="text-link" href="assets/pointq-bench-paper.pdf"
+            >Camera-ready paper <span aria-hidden="true">&#8599;</span></a
+          >
+        </div>
+        <div class="citation-card reveal">
+          <div>
+            <span class="mono-label">CITE POINTQ-BENCH</span
+            ><button id="copy-citation">Copy BibTeX</button>
+          </div>
+          <pre><code id="bibtex">@inproceedings{wang2026pointqbench,
+  title = {PointQ-Bench: Benchmarking Diagnostic
+    and Interpretable Point Cloud Quality Assessment},
+  author = {Wang, Duanchu and Li, Cheng and
+    Yang, Junjie and Huang, Jing and Cheng, Zihang
+    and Gao, Zhi and Zhu, Bohong and Wang, Di},
+  booktitle = {Proceedings of the 34th ACM
+    International Conference on Multimedia},
+  year = {2026},
+  doi = {10.1145/3767308.3836267}
+}</code></pre>
+          <p>
+            ACM Multimedia 2026 &middot; Rio de Janeiro, Brazil<br />DOI as
+            printed in the camera-ready paper.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer container">
+      <a class="brand" href="#"
+        ><img src="assets/favicon.svg" width="28" height="28" alt="" /><span
+          >PointQ-Bench</span
+        ></a
+      >
+      <p>Less guessing. More grounding.</p>
+      <div>
+        <a href="https://github.com/Mujeco/PointQ-Bench">Source</a
+        ><a
+          href="https://github.com/Mujeco/PointQ-Bench/blob/main/THIRD_PARTY_NOTICES.md"
+          >Licenses</a
+        ><span>&copy; 2026 PointQ-Bench authors</span>
+      </div>
+    </footer>
+    <div
+      id="copy-status"
+      class="copy-status"
+      role="status"
+      aria-live="polite"
+    ></div>
+  </body>
+</html>

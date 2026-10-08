@@ -1,0 +1,13 @@
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary
+*.ttf binary
+
+# These downloaded helpers must retain their exact audited bytes.
+scripts/data/merge_pointcloud_parts.py -text
+scripts/data/PointQ-Bench_SHA256SUMS_v1.0.txt -text
+scripts/data/PointQ-Bench_PARTS_SHA256SUMS_v1.0.txt -text whitespace=cr-at-eol
+
+# Preserve the upstream font license, including its original trailing space.
+docs/assets/SpaceGrotesk-OFL.txt whitespace=-blank-at-eol

@@ -1,0 +1,4 @@
+# Evaluation only; no GPU, rendering, embedding, or training dependencies.
+numpy>=1.24
+openai>=1.52,<2
+httpx>=0.24,<1

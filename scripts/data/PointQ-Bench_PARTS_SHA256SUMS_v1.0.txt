@@ -1,0 +1,4 @@
+7dfe24e71fbfdfbeca01a56cf240ba06fee981cba9a2e232d4391ba6233ae9df  PointQ-Bench_pointclouds_v1.0.zip.001
+2a0cb98c5d077ef39cadd754598e3c0c379257affcbf8a5aec00fd70eff42c63  PointQ-Bench_pointclouds_v1.0.zip.002
+c221da4e2d0b8d354bbc7d3a0657968a9f8cae46003e12fb109aba886a3d4d45  PointQ-Bench_pointclouds_v1.0.zip.003
+be26d96635dde38be152a1f23eab015a83166fa101d1104e59a520b19a5a5c1a  PointQ-Bench_pointclouds_v1.0.zip.004
